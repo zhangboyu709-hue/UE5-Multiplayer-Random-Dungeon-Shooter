@@ -34,7 +34,7 @@ Widget要用这个，然后从Return Value中引出来。
 <img width="608" height="272" alt="image" src="https://github.com/user-attachments/assets/0fa48e89-c239-4f13-aae1-a599a54cb928" />
 <img width="544" height="209" alt="image" src="https://github.com/user-attachments/assets/2bd54a4d-2a51-4098-a05e-b9ef8b53110b" />
 
-#  可能遇到的问题
+#   可能遇到的问题
 1.steam没法连接，创建后找不到，可以先看看两台电脑的steam的设置里的下载服务器是不是同一个，不是同一个连不上。
 
 <img width="627" height="326" alt="image" src="https://github.com/user-attachments/assets/32db261f-8bc2-444d-a8c6-c57c6ba1ef56" />
