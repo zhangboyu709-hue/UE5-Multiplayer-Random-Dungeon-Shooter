@@ -59,6 +59,7 @@ Widget要用这个，然后从Return Value中引出来。
 这个插件实际上是多个的混合，包括了地图生成逻辑、敌人生成逻辑和物品生成逻辑，但目前设计的还比较简单打算在后面慢慢往里面添加新的逻辑
 如果只需要把地牢、敌人和物品生成出来，只需要拖入BP_DungeonRuntimeManager，里面会依次调用地牢生成、敌人生成和物品生成。
 如果想尝试最小的闭环可以用UE5自带的Variant_Shooter项目只需要通过在Lvl_Shooter很少的操作就能实现闭环(我之后会一步步把每个部分的实现说明白这里就是只关心最小的实现循环)
+
 1.BP_ShooterCharacter加入BPI_DungeonPlayer接口我插件里敌人追踪和传送门的逻辑都是看有没有这个插件，如果有就能实现传送和敌人的追逐
 
 <img width="1070" height="512" alt="image" src="https://github.com/user-attachments/assets/ded2e3ad-449b-415b-bcaf-30fb87993a80" />
