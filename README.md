@@ -55,4 +55,48 @@ Widget要用这个，然后从Return Value中引出来。
 
 <img width="865" height="56" alt="image" src="https://github.com/user-attachments/assets/cec6de14-9384-477b-8442-2b8fee7d10ac" />
 
-#  待补全
+#  RandomDungeon插件的使用
+这个插件实际上是多个的混合，包括了地图生成逻辑、敌人生成逻辑和物品生成逻辑，但目前设计的还比较简单打算在后面慢慢往里面添加新的逻辑
+如果只需要把地牢、敌人和物品生成出来，只需要拖入BP_DungeonRuntimeManager，里面会依次调用地牢生成、敌人生成和物品生成。
+如果想尝试最小的闭环可以用UE5自带的Variant_Shooter项目只需要通过在Lvl_Shooter很少的操作就能实现闭环(我之后会一步步把每个部分的实现说明白这里就是只关心最小的实现循环)
+1.BP_ShooterCharacter加入BPI_DungeonPlayer接口我插件里敌人追踪和传送门的逻辑都是看有没有这个插件，如果有就能实现传送和敌人的追逐
+
+<img width="1070" height="512" alt="image" src="https://github.com/user-attachments/assets/ded2e3ad-449b-415b-bcaf-30fb87993a80" />
+<img width="442" height="106" alt="image" src="https://github.com/user-attachments/assets/697535cb-e1d2-43f2-ad78-08a2ebc6648e" />
+
+2.往BP_ShooterCharacter加入新变量bIsDead（这个的主要目的是实现不会追已经死亡的角色），然后在事件图表里中的Even On Death中加入set bIsDead为true
+
+<img width="597" height="529" alt="image" src="https://github.com/user-attachments/assets/1b826b0c-722d-4069-9d3b-61f797bb5cfe" />
+
+3.点开左下角的接口会有一个CanBeTargeted函数，按照这么设置实现死亡后不会再追
+
+<img width="479" height="202" alt="image" src="https://github.com/user-attachments/assets/25602490-4a70-487e-836c-584a58950484" />
+
+4.调整地牢的起始生成位置和摧毁Z以及Nav的位置，要求摧毁Z不要涉及到地牢然后Nav要覆盖地牢（Nav是导航网格，是实现敌人追逐的基础）。理论上有人物攻击和敌人攻击的闭环，但因为一开始设计的时候这一块用了相通的名字所以不需要修改，直接就实现了。
+
+<img width="1055" height="452" alt="image" src="https://github.com/user-attachments/assets/59d9537f-3c72-4e21-9b55-9a629b94fe40" />
+<img width="962" height="430" alt="image" src="https://github.com/user-attachments/assets/b663142f-7286-46e6-b31f-bcc476b753b9" />
+
+5.然后是实现物品的拾取然后放在身上
+先去input里加入新的输入操作（放在外层或者shoot的input里都可，然后这里不用动了，里面不用管）
+
+<img width="584" height="173" alt="image" src="https://github.com/user-attachments/assets/13dbb46a-be42-4de8-b71d-f35ed6011acc" />
+
+在IMC_Default中加入输入操作并且绑定键位
+
+<img width="774" height="405" alt="image" src="https://github.com/user-attachments/assets/d18a807b-f069-4174-8ad0-d8f58cc3b0f0" />
+
+在BP_ShooterCharacter中加入BP_DungeonInventoryComponent组件，然后加入下面的方法，之后会调用我物品拾取那里的操作这里可以先不管
+
+<img width="1163" height="504" alt="image" src="https://github.com/user-attachments/assets/54a1dac3-6fab-4044-8091-93656c2ede51" />
+
+加入界面的初始化（注意目前这里的倒计时和总分还没搞要接下来完成）
+
+<img width="437" height="163" alt="image" src="https://github.com/user-attachments/assets/1f27fb3a-8b51-4ffe-8341-f51a8966e6ed" />
+
+
+
+
+
+
+
