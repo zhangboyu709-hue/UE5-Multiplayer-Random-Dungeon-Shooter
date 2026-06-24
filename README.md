@@ -3,6 +3,7 @@
 #  MultiplayerSessions插件的使用方法
 1.删除Binaries和Intermediate，然后直接复制进项目里，在UE5的插件中加入steam sockets和Online Subsystem Steam
 <img width="363" height="275" alt="image" src="https://github.com/user-attachments/assets/8a16d2a3-79cd-4519-af9d-19e872ecf9fb" />
+
 2.在DefaultEngine中加入下面（这个只有steam方法才需要，然后目前我没找到如何在项目启动的时候实现SteamSocketsNetDriver和IpNetDriver的转换，启动后就只支持其中一种，然后优先steam）
 ```ini
 [/Script/Engine.GameEngine]
